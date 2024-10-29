@@ -149,9 +149,13 @@ document.onkeydown = function(evt) {
             case up:
                 if (index == code.length - 1 && code[index] == -90) {
                     rd = Math.floor(Math.random() * (amo + 1));
+                    button.pause();
+                    button.currentTime = 0;
                     button.play();
                     score++;
                     s_elem.innerHTML = "SCORE: " + score;
+                    s_fx.pause();
+                    s_fx.currentTime = 0;
                     s_fx.play();
                     createbtns(rd);
                     index = 0;
@@ -164,6 +168,8 @@ document.onkeydown = function(evt) {
                 }
                 if (code[index] == -90) {
                     elem[index].style.filter = "invert(78%) sepia(87%) saturate(5065%) hue-rotate(358deg) brightness(96%) contrast(105%)";
+                    button.pause();
+                    button.currentTime = 0;
                     button.play();
                     index++;
                 }else {
@@ -171,15 +177,21 @@ document.onkeydown = function(evt) {
                         elem[i].style.filter = "invert(48%) sepia(0%) saturate(3121%) hue-rotate(234deg) brightness(104%) contrast(81%)";
                     }
                     index = 0;
+                    w_fx.pause();
+                    w_fx.currentTime = 0;
                     w_fx.play();
                 }
                 break;
             case left:
                 if (index == code.length - 1 && code[index] == 180) {
                     rd = Math.floor(Math.random() * (amo + 1));
+                    button.pause();
+                    button.currentTime = 0;
                     button.play();
                     score++;
                     s_elem.innerHTML = "SCORE: " + score;
+                    s_fx.pause();
+                    s_fx.currentTime = 0;
                     s_fx.play();
                     createbtns(rd);
                     index = 0;
@@ -193,6 +205,8 @@ document.onkeydown = function(evt) {
                 }
                 if (code[index] == 180) {
                     elem[index].style.filter = "invert(78%) sepia(87%) saturate(5065%) hue-rotate(358deg) brightness(96%) contrast(105%)";
+                    button.pause();
+                    button.currentTime = 0;
                     button.play();
                     index++;
                 }else {
@@ -200,15 +214,21 @@ document.onkeydown = function(evt) {
                         elem[i].style.filter = "invert(48%) sepia(0%) saturate(3121%) hue-rotate(234deg) brightness(104%) contrast(81%)";
                     }
                     index = 0;
+                    w_fx.pause();
+                    w_fx.currentTime = 0;
                     w_fx.play();
                 }
                 break;
             case down:
                 if (index == code.length - 1 && code[index] == 90) {
                     rd = Math.floor(Math.random() * (amo + 1));
+                    button.pause();
+                    button.currentTime = 0;
                     button.play();
                     score++;
                     s_elem.innerHTML = "SCORE: " + score;
+                    s_fx.pause();
+                    s_fx.currentTime = 0;
                     s_fx.play();
                     createbtns(rd);
                     index = 0;
@@ -222,6 +242,8 @@ document.onkeydown = function(evt) {
                 }
                 if (code[index] == 90) {
                     elem[index].style.filter = "invert(78%) sepia(87%) saturate(5065%) hue-rotate(358deg) brightness(96%) contrast(105%)";
+                    button.pause();
+                    button.currentTime = 0;
                     button.play();
                     index++;
                 }else {
@@ -229,15 +251,21 @@ document.onkeydown = function(evt) {
                         elem[i].style.filter = "invert(48%) sepia(0%) saturate(3121%) hue-rotate(234deg) brightness(104%) contrast(81%)";
                     }
                     index = 0;
+                    w_fx.pause();
+                    w_fx.currentTime = 0;
                     w_fx.play();
                 }
                 break;
             case right:
                 if (index == code.length - 1 && code[index] == 0) {
                     rd = Math.floor(Math.random() * (amo + 1));
+                    button.pause();
+                    button.currentTime = 0;
                     button.play();
                     score++;
                     s_elem.innerHTML = "SCORE: " + score;
+                    s_fx.pause();
+                    s_fx.currentTime = 0;
                     s_fx.play();
                     createbtns(rd);
                     index = 0;
@@ -252,6 +280,8 @@ document.onkeydown = function(evt) {
                 }
                 if (code[index] == 0) {
                     elem[index].style.filter = "invert(78%) sepia(87%) saturate(5065%) hue-rotate(358deg) brightness(96%) contrast(105%)";
+                    button.pause();
+                    button.currentTime = 0;
                     button.play();
                     index++;
                 }else {
@@ -259,6 +289,8 @@ document.onkeydown = function(evt) {
                         elem[i].style.filter = "invert(48%) sepia(0%) saturate(3121%) hue-rotate(234deg) brightness(104%) contrast(81%)";
                     }
                     index = 0;
+                    w_fx.pause();
+                    w_fx.currentTime = 0;
                     w_fx.play();
                 }
                 break;
