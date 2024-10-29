@@ -3,7 +3,6 @@ var code = [];
 var index = 0;
 var amo = 49;
 var rd = Math.floor(Math.random() * (amo + 1));
-var interval = 500;
 var score = 0;
 var inc = 15;
 var playing = false;
@@ -84,32 +83,30 @@ function changeD() {
     }
 }
 
+function update(timestamp) {
+    if (width > 0 && playing) {
+        width -= 0.01 + (score * 0.005);
+        bar.style.width = width + "%";
+        requestAnimationFrame(update)
+    } else if (width <= 0) {
+        lose()
+    }
+}
+
 function start() {
     var elem = document.getElementById("start");
     elem.style.display = "none";
     playing = true;
 
-    var elem = document.getElementById("bar");
-    var id = setInterval(frame, interval);
-    function frame() {
-        if (playing) {
-            if (width <= 0) {
-                clearInterval(id);
-                lose();
-            } else {
-                width--;
-                elem.style.width = width + "%";
-                clearInterval(id);
-                id = setInterval(frame, interval);
-            }
-        }
-    }
+    var bar = document.getElementById("bar");
+    requestAnimationFrame(update);
 }
 
 function closeSet() {
     var elem = document.getElementById("settings");
     elem.style.display = "none";
     playing = true;
+    requestAnimationFrame(update)
 }
 
 function settings() {
@@ -135,7 +132,6 @@ function retry() {
     var s = document.getElementById("score");
 
     width = 100;
-    interval = 500;
     score = 0;
     s.innerHTML = "SCORE: " + score;
     createbtns(rd);
@@ -164,7 +160,6 @@ document.onkeydown = function(evt) {
                     } else {
                         width += w_inc;
                     }
-                    interval -= inc;
                     break;
                 }
                 if (code[index] == -90) {
@@ -191,7 +186,7 @@ document.onkeydown = function(evt) {
                     if (width + w_inc >= 100) {
                         width = 100;
                     } else {
-                        width += w_inc;
+                        width += w_inc + (score * 0.05);
                     }
                     interval -= inc;
                     break;
