@@ -12,6 +12,7 @@ var left = "a";
 var right = "d";
 var up = "w";
 var down = "s";
+var size = 100;
 
 // 0: default 1:left 2:right 3:up 4:down
 var change = 0;
@@ -27,8 +28,33 @@ var w_fx = new Audio("sfx/wrong.mp3");
 //up -90 down 90 left 180 right 0
 //https://www.ign.com/wikis/helldivers-2/Stratagems_Codes_List
 
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  } 
+
 document.addEventListener("DOMContentLoaded", function () {
-  createbtns(rd);
+  var slider = document.getElementById("size_slider");
+  var size_txt = document.getElementById("size_txt");
+  slider.oninput = () => {
+    size = slider.value
+    let arrows = document.getElementsByClassName('btn')
+    for (let i = 0; i < arrows.length; i++) {
+      arrows[i].style.width = `${(20 / 100) * size}vh`
+    }
+    size_txt.innerHTML = `ARROW SIZE: ${size}%`
+  }
 
   var l_e = document.getElementById("left-tx");
   var r_e = document.getElementById("right-tx");
@@ -38,17 +64,29 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!document.cookie.includes("controls")) {
     document.cookie = "controls=" + left + "," + right + "," + up + "," + down + "; SameSite=Lax;"
   } else {
-    var c = document.cookie.replace("controls=", "").split(",");
+    var c = getCookie("controls").split(",");
     left = c[0];
     right = c[1];
     up = c[2];
     down = c[3];
   }
 
+  if (!document.cookie.includes("size")) {
+    document.cookie = "size=" + size + "; SameSite=Lax;"
+  } else {
+    var c = getCookie("size");
+    size = c;
+    slider.value = size;
+  }
+
+  createbtns(rd);
+
   l_e.innerHTML = "LEFT: " + left;
   r_e.innerHTML = "RIGHT: " + right;
   u_e.innerHTML = "UP: " + up;
   d_e.innerHTML = "DOWN: " + down;
+
+  size_txt.innerHTML = `ARROW SIZE: ${size}%`
 });
 
 function changeL() {
@@ -106,6 +144,7 @@ function closeSet() {
     var elem = document.getElementById("settings");
     elem.style.display = "none";
     playing = true;
+    document.cookie = "size=" + size + "; SameSite=Lax;"
     requestAnimationFrame(update)
 }
 
